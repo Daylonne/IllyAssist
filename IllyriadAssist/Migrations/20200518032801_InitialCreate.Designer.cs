@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IllyriadAssist.Migrations
 {
     [DbContext(typeof(IllyContext))]
-    [Migration("20200517174354_InitialCreate")]
+    [Migration("20200518032801_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -16,6 +16,30 @@ namespace IllyriadAssist.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.4");
+
+            modelBuilder.Entity("IllyriadAssist.Models.APISettings", b =>
+                {
+                    b.Property<int>("APIid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("API_ID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("APIKey")
+                        .IsRequired()
+                        .HasColumnName("API_KEY")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("APIType")
+                        .IsRequired()
+                        .HasColumnName("API_TYPE")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(4);
+
+                    b.HasKey("APIid");
+
+                    b.ToTable("MD_API_SETTINGS");
+                });
 
             modelBuilder.Entity("IllyriadAssist.Models.RareMinerals", b =>
                 {

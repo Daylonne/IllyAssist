@@ -42,5 +42,6 @@ namespace IllyriadAssist
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
     }
 }

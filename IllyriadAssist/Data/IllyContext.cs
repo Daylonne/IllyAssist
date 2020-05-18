@@ -13,5 +13,6 @@ namespace IllyriadAssist.Data
         {
         }
         public DbSet<RareMinerals> RareMinerals { get; set; }
+        public DbSet<APISettings> Settings { get; set; }
     }
 }

@@ -15,6 +15,30 @@ namespace IllyriadAssist.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.4");
 
+            modelBuilder.Entity("IllyriadAssist.Models.APISettings", b =>
+                {
+                    b.Property<int>("APIid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("API_ID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("APIKey")
+                        .IsRequired()
+                        .HasColumnName("API_KEY")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("APIType")
+                        .IsRequired()
+                        .HasColumnName("API_TYPE")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(4);
+
+                    b.HasKey("APIid");
+
+                    b.ToTable("MD_API_SETTINGS");
+                });
+
             modelBuilder.Entity("IllyriadAssist.Models.RareMinerals", b =>
                 {
                     b.Property<int>("ItemID")

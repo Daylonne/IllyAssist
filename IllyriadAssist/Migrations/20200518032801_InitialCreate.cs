@@ -7,6 +7,20 @@ namespace IllyriadAssist.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "MD_API_SETTINGS",
+                columns: table => new
+                {
+                    API_ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    API_TYPE = table.Column<string>(maxLength: 4, nullable: false),
+                    API_KEY = table.Column<string>(maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MD_API_SETTINGS", x => x.API_ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MD_RARE_MINERALS",
                 columns: table => new
                 {
@@ -25,6 +39,9 @@ namespace IllyriadAssist.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "MD_API_SETTINGS");
+
             migrationBuilder.DropTable(
                 name: "MD_RARE_MINERALS");
         }
