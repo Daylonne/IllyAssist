@@ -14,12 +14,11 @@ namespace IllyriadAssist.Models
         
         //MAIL, NOTI
         [Required]
-        [StringLength(4, ErrorMessage = "API Type cannot be longer than 4 characters.")]
+        [StringLength(15, ErrorMessage = "API Type cannot be longer than 15 characters.")]
         [Column("API_TYPE")]
         [Display(Name = "API Type")]
         public string APIType { get; set; }
 
-        [Required]
         [StringLength(100, ErrorMessage = "API Key cannot be longer than 100 characters.")]
         [Column("API_KEY")]
         [Display(Name = "API Key")]

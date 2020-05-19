@@ -23,7 +23,7 @@ namespace IllyriadAssist.Pages.API
 
         public async Task OnGetAsync()
         {
-            APISettings = await _context.Settings.ToListAsync();
+            APISettings = await _context.APISettings.ToListAsync();
         }
     }
 }

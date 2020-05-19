@@ -12,8 +12,8 @@ namespace IllyriadAssist.Migrations
                 {
                     API_ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    API_TYPE = table.Column<string>(maxLength: 4, nullable: false),
-                    API_KEY = table.Column<string>(maxLength: 100, nullable: false)
+                    API_TYPE = table.Column<string>(maxLength: 15, nullable: false),
+                    API_KEY = table.Column<string>(maxLength: 100, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -35,6 +35,26 @@ namespace IllyriadAssist.Migrations
                 {
                     table.PrimaryKey("PK_MD_RARE_MINERALS", x => x.ITEM_ID);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "USER_API_DATA",
+                columns: table => new
+                {
+                    RECORD_ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    NOTIFY_ID = table.Column<string>(maxLength: 40, nullable: false),
+                    NOTIFY_TYPE = table.Column<string>(maxLength: 4, nullable: false),
+                    CITY_NAME = table.Column<string>(maxLength: 100, nullable: false),
+                    ITEM_X_GRID = table.Column<string>(maxLength: 5, nullable: false),
+                    ITEM_Y_GRID = table.Column<string>(maxLength: 5, nullable: false),
+                    ITEM_CATEGORY = table.Column<string>(maxLength: 4, nullable: false),
+                    API_ILLY_CODE = table.Column<string>(maxLength: 10, nullable: false),
+                    GRID_QUANTITY = table.Column<string>(maxLength: 10, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_USER_API_DATA", x => x.RECORD_ID);
+                });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -44,6 +64,9 @@ namespace IllyriadAssist.Migrations
 
             migrationBuilder.DropTable(
                 name: "MD_RARE_MINERALS");
+
+            migrationBuilder.DropTable(
+                name: "USER_API_DATA");
         }
     }
 }

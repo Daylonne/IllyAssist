@@ -1,6 +1,7 @@
 ﻿using IllyriadAssist.Models;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.CodeAnalysis.CodeStyle;
 
 namespace IllyriadAssist.Data
 {
@@ -141,6 +142,24 @@ namespace IllyriadAssist.Data
             context.RareMinerals.AddRange(rareMineralsData);
             context.SaveChanges();
 
-        }
+            // Check if API Settings have been populated
+            if (context.APISettings.Any())
+            {
+                return; // API Settings Table has been seeded.
+            }
+
+            var apiSettingsData = new APISettings[]
+            {
+                // Notification APISettings
+                new APISettings
+                {APIType = "Notifications"},
+
+                // InGame Mail APISettings
+                new APISettings
+                {APIType = "InGame Mail"}
+            };
+            context.APISettings.AddRange(apiSettingsData);
+            context.SaveChanges();
+}
     }
 }

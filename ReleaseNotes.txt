@@ -1,0 +1,14 @@
+Release Notes - MM/DD/YYYY
+Version - 0.5 (Beta)
+
+New Features
+- Added ability to manually enter your API Key for Notifications.
+- Added ability to manually enter your API Key for InGame Mail.
+- Added ability to update API Keys.
+- Added ability to view Rare Minerals based on what town sent the Scouts or Harvesters.
+- Added ability to track quantity of Rare Minerals in a node by city that sent Scouts or Harvesters.
+- Added ability to "Exhaust" a Rare Mineral node.
+
+Planned for Version 0.6 (Beta)
+
+- Add ability to view Rare Herbs based on what town sends the scouts or harvesters.

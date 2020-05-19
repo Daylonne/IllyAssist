@@ -29,7 +29,7 @@ namespace IllyriadAssist.Pages.API
                 return NotFound();
             }
 
-            APISettings = await _context.Settings.FirstOrDefaultAsync(m => m.APIid == id);
+            APISettings = await _context.APISettings.FirstOrDefaultAsync(m => m.APIid == id);
 
             if (APISettings == null)
             {
@@ -45,11 +45,11 @@ namespace IllyriadAssist.Pages.API
                 return NotFound();
             }
 
-            APISettings = await _context.Settings.FindAsync(id);
+            APISettings = await _context.APISettings.FindAsync(id);
 
             if (APISettings != null)
             {
-                _context.Settings.Remove(APISettings);
+                _context.APISettings.Remove(APISettings);
                 await _context.SaveChangesAsync();
             }
 

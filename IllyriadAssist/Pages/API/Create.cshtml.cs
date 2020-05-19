@@ -36,7 +36,7 @@ namespace IllyriadAssist.Pages.API
                 return Page();
             }
 
-            _context.Settings.Add(APISettings);
+            _context.APISettings.Add(APISettings);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

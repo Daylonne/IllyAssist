@@ -2,13 +2,13 @@
 @model IllyriadAssist.Pages.API.IndexModel
 
 @{
-    ViewData["Title"] = "Illyriad API Keys";
+    ViewData["Title"] = "Index";
 }
 
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <!--<a asp-page="Create">Create New</a>-->
 </p>
 <table class="table">
     <thead>
@@ -32,9 +32,9 @@
                 @Html.DisplayFor(modelItem => item.APIKey)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.APIid">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.APIid">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.APIid">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.APIid">Update</a> |
+                <a asp-page="./Details" asp-route-id="@item.APIid">Details</a> <!--|-->
+                <!--<a asp-page="./Delete" asp-route-id="@item.APIid">Delete</a>-->
             </td>
         </tr>
 }
