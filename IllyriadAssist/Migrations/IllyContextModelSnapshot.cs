@@ -38,6 +38,28 @@ namespace IllyriadAssist.Migrations
                     b.ToTable("MD_API_SETTINGS");
                 });
 
+            modelBuilder.Entity("IllyriadAssist.Models.IllyRegions", b =>
+                {
+                    b.Property<int>("RegionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("REGION_ID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("IllyRegionID")
+                        .HasColumnName("ILLY_REGION_ID")
+                        .HasColumnType("INTEGER")
+                        .HasMaxLength(3);
+
+                    b.Property<string>("RegionName")
+                        .HasColumnName("REGION_NAME")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
+
+                    b.HasKey("RegionID");
+
+                    b.ToTable("MD_ILLY_REGIONS");
+                });
+
             modelBuilder.Entity("IllyriadAssist.Models.RareMinerals", b =>
                 {
                     b.Property<int>("ItemID")
@@ -99,15 +121,33 @@ namespace IllyriadAssist.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(100);
 
+                    b.Property<string>("CityXGrid")
+                        .IsRequired()
+                        .HasColumnName("CITY_X_GRID")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("CityYGrid")
+                        .IsRequired()
+                        .HasColumnName("CITY_Y_GRID")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
+
                     b.Property<string>("GridQuantity")
                         .IsRequired()
                         .HasColumnName("GRID_QUANTITY")
                         .HasColumnType("TEXT")
                         .HasMaxLength(10);
 
+                    b.Property<string>("IllyRegionID")
+                        .IsRequired()
+                        .HasColumnName("ILLY_REGION_ID")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(3);
+
                     b.Property<string>("IllyriadCode")
                         .IsRequired()
-                        .HasColumnName("API_ILLY_CODE")
+                        .HasColumnName("ILLY_ITEM_CODE")
                         .HasColumnType("TEXT")
                         .HasMaxLength(10);
 

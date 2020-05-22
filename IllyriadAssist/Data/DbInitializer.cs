@@ -138,7 +138,6 @@ namespace IllyriadAssist.Data
                  ImageName = "trove.png"}
 
             };
-
             context.RareMinerals.AddRange(rareMineralsData);
             context.SaveChanges();
 
@@ -155,11 +154,333 @@ namespace IllyriadAssist.Data
                 {APIType = "Notifications"},
 
                 // InGame Mail APISettings
-                new APISettings
-                {APIType = "InGame Mail"}
+                //new APISettings
+                //{APIType = "InGame Mail"}
             };
             context.APISettings.AddRange(apiSettingsData);
             context.SaveChanges();
-}
+
+            if (context.IllyRegions.Any())
+            {
+                return; // Region Data Table has been seeded.
+            }
+
+            var illyRegionsData = new IllyRegions[]
+            {
+                // Region - The Wastes (1)
+                new IllyRegions
+                {IllyRegionID = 1, RegionName = "The Wastes"},
+
+                // Region - Kal Tirikan (2)
+                new IllyRegions
+                {IllyRegionID = 2, RegionName = "Kal Tirikan"},
+
+                // Region - Wolgost (3)
+                new IllyRegions
+                {IllyRegionID = 3, RegionName = "Wolgost"},
+
+                // Region - Ursor (4)
+                new IllyRegions
+                {IllyRegionID = 4, RegionName = "Ursor"},
+
+                // Region - Qarossian (5)
+                new IllyRegions
+                {IllyRegionID = 5, RegionName = "Qarossian"},
+
+                // Region - Windlost (6)
+                new IllyRegions
+                {IllyRegionID = 6, RegionName = "Windlost"},
+
+                // Region - Tamarin (7)
+                new IllyRegions
+                {IllyRegionID = 7, RegionName = "Tamarin"},
+
+                // Region - Fremorn (8)
+                new IllyRegions
+                {IllyRegionID = 8, RegionName = "Fremorn"},
+
+                // Region - Norweld (9)
+                new IllyRegions
+                {IllyRegionID = 9, RegionName = "Norweld"},
+
+                // Region - Laoshin (10)
+                new IllyRegions
+                {IllyRegionID = 10, RegionName = "Laoshin"},
+
+                // Region - Ragallon (11)
+                new IllyRegions
+                {IllyRegionID = 11, RegionName = "Ragallon"},
+
+                // Region - Taomist (12)
+                new IllyRegions
+                {IllyRegionID = 12, RegionName = "Taomist"},
+
+                // Region - Meilla (13)
+                new IllyRegions
+                {IllyRegionID = 13, RegionName = "Meilla"},
+
+                // Region - Lucerna (14)
+                new IllyRegions
+                {IllyRegionID = 14, RegionName = "Lucerna"},
+
+                // Region - Middle Kingdom (15)
+                new IllyRegions
+                {IllyRegionID = 15, RegionName = "Middle Kingdom"},
+
+                // Region - Norweld (16)
+                new IllyRegions
+                {IllyRegionID = 16, RegionName = "Norweld"},
+
+                // Region - Keppen (17)
+                new IllyRegions
+                {IllyRegionID = 17, RegionName = "Keppen"},
+
+                // Region - Tor Carrock (18)
+                new IllyRegions
+                {IllyRegionID = 18, RegionName = "Tor Carrock"},
+
+                // Region - The Western Realms (19)
+                new IllyRegions
+                {IllyRegionID = 19, RegionName = "The Western Realms"},
+
+                // Region - Keshalia (20)
+                new IllyRegions
+                {IllyRegionID = 20, RegionName = "Keshalia"},
+
+                // Region - Perrigor (21)
+                new IllyRegions
+                {IllyRegionID = 21, RegionName = "Perrigor"},
+
+                // Region - Kul Tar (22)
+                new IllyRegions
+                {IllyRegionID = 22, RegionName = "Kul Tar"},
+
+                // Region - Kumala (23)
+                new IllyRegions
+                {IllyRegionID = 23, RegionName = "Kumala"},
+
+                // Region - Lan Larosh (24)
+                new IllyRegions
+                {IllyRegionID = 24, RegionName = "Lan Larosh"},
+
+                // Region - Arran (25)
+                new IllyRegions
+                {IllyRegionID = 25, RegionName = "Arran"},
+
+                // Region - Turalia (26)
+                new IllyRegions
+                {IllyRegionID = 26, RegionName = "Turalia"},
+
+                // Region - Zanpur (27)
+                new IllyRegions
+                {IllyRegionID = 27, RegionName = "Zanpur"},
+
+                // Region - Elijal (28)
+                new IllyRegions
+                {IllyRegionID = 28, RegionName = "Elijal"},
+
+                // Region - Azura (29)
+                new IllyRegions
+                {IllyRegionID = 29, RegionName = "Azura"},
+
+                // Region - Djebeli (30)
+                new IllyRegions
+                {IllyRegionID = 30, RegionName = "Djebeli"},
+
+                // POSSIBLE START OF BROKEN LANDS CONTINENT REGIONS
+
+                // Region - Region 31 - Ocean
+                new IllyRegions
+                {IllyRegionID = 31, RegionName = "Region 31 (Ocean)"},
+
+                // Region - Tallimar (32)
+                new IllyRegions
+                {IllyRegionID = 32, RegionName = "Tallimar"},
+
+                // Region - Larn (33)
+                new IllyRegions
+                {IllyRegionID = 33, RegionName = "Larn"},
+
+                // Region - Kem (34)
+                new IllyRegions
+                {IllyRegionID = 34, RegionName = "Kem"},
+
+                // Region - Ferra Ilse (35)
+                new IllyRegions
+                {IllyRegionID = 35, RegionName = "Ferra Ilse"},
+
+                // Region - Trome (36)
+                new IllyRegions
+                {IllyRegionID = 36, RegionName = "Trome"},
+
+                // Region - Rill Archipelago (37)
+                new IllyRegions
+                {IllyRegionID = 37, RegionName = "Rill Archipelago"},
+
+                // Region - Stormstone Island (38)
+                new IllyRegions
+                {IllyRegionID = 38, RegionName = "Stormstone Island"},
+
+                // Region - Region 39 - Not Named
+                new IllyRegions
+                {IllyRegionID = 39, RegionName = "Region 39 (Unknown)"},
+
+                // Region - Calumnex (40)
+                new IllyRegions
+                {IllyRegionID = 40, RegionName = "Calumnex"},
+
+                // Region - Puchuallpa (41)
+                new IllyRegions
+                {IllyRegionID = 41, RegionName = "Puchuallpa"},
+
+                // Region - Region 42 - Not Named
+                new IllyRegions
+                {IllyRegionID = 42, RegionName = "Region 42 (Unknown)"},
+
+                // Region - Pamanyallpa (43)
+                new IllyRegions
+                {IllyRegionID = 43, RegionName = "Pamanyallpa"},
+
+                // Region - Huronire (44)
+                new IllyRegions
+                {IllyRegionID = 44, RegionName = "Huronire"},
+
+                // Region - Clarien (45)
+                new IllyRegions
+                {IllyRegionID = 45, RegionName = "Clarien"},
+
+                // Region - Pawanallpa (46)
+                new IllyRegions
+                {IllyRegionID = 46, RegionName = "Pawanallpa"},
+
+                // Region - Region 47 - Not Named
+                new IllyRegions
+                {IllyRegionID = 47, RegionName = "Region 47 (Unknown)"},
+
+                // Region - The Poisoned Isle (48)
+                new IllyRegions
+                {IllyRegionID = 48, RegionName = "The Poisoned Isle"},
+
+                // Region - Glanhad (49)
+                new IllyRegions
+                {IllyRegionID = 49, RegionName = "Glanhad"},
+
+                // Region - Northmarch (50)
+                new IllyRegions
+                {IllyRegionID = 50, RegionName = "Northmarch"},
+
+                // Region - Region 51 - Ocean
+                new IllyRegions
+                {IllyRegionID = 51, RegionName = "Region 51 (Ocean)"},
+
+                // Region - Westmarch (52)
+                new IllyRegions
+                {IllyRegionID = 52, RegionName = "Westmarch"},
+
+                // Region - Region 53 - Not Named
+                new IllyRegions
+                {IllyRegionID = 53, RegionName = "Region 53 (Unknown)"},
+
+                // Region - Oarnamly (54)
+                new IllyRegions
+                {IllyRegionID = 54, RegionName = "Oarnamly"},
+
+                // Region - Region 55 - Not Named
+                new IllyRegions
+                {IllyRegionID = 55, RegionName = "Region 55 (Unknown)"},
+
+                // Region - Gremont (56)
+                new IllyRegions
+                {IllyRegionID = 56, RegionName = "Gremont"},
+
+                // Region - Coanhara (57)
+                new IllyRegions
+                {IllyRegionID = 57, RegionName = "Coanhara"},
+
+                // Region - Lapo's Lua (58)
+                new IllyRegions
+                {IllyRegionID = 58, RegionName = "Lapo's Lua"},
+
+                // Region - Newlands (59)
+                new IllyRegions
+                {IllyRegionID = 59, RegionName = "Newlands"},
+
+                // Region - Region 60 - Not Named
+                new IllyRegions
+                {IllyRegionID = 60, RegionName = "Region 60 (Unknown)"},
+
+                // Region - Aindara (61)
+                new IllyRegions
+                {IllyRegionID = 61, RegionName = "Aindara"},
+
+                // Region - The Pirate Isles (62)
+                new IllyRegions
+                {IllyRegionID = 62, RegionName = "The Pirate Isles"},
+
+                // Region - Silbeaur (63)
+                new IllyRegions
+                {IllyRegionID = 63, RegionName = "Silbeaur"},
+
+                // Region - Fellandire (64)
+                new IllyRegions
+                {IllyRegionID = 64, RegionName = "Fellandire"},
+
+                // Region - Region 65 - Not Named
+                new IllyRegions
+                {IllyRegionID = 65, RegionName = "Region 65 (Unknown)"},
+
+                // Region - Vindorel (66)
+                new IllyRegions
+                {IllyRegionID = 66, RegionName = "Vindorel"},
+
+                // Region - Almenly (67)
+                new IllyRegions
+                {IllyRegionID = 67, RegionName = "Almenly"},
+
+                // Region - Kormandly (68)
+                new IllyRegions
+                {IllyRegionID = 68, RegionName = "Kormandly"},
+
+                // Region - The Orken Coast (69)
+                new IllyRegions
+                {IllyRegionID = 69, RegionName = "The Orken Coast"},
+
+                // Region - Kingslands (70)
+                new IllyRegions
+                {IllyRegionID = 70, RegionName = "Kingslands"},
+
+                // Region - Farshards (71)
+                new IllyRegions
+                {IllyRegionID = 71, RegionName = "Farshards"},
+
+                // Region - Shardlands (72)
+                new IllyRegions
+                {IllyRegionID = 72, RegionName = "Shardlands"},
+
+                // Region - Strendur (73)
+                new IllyRegions
+                {IllyRegionID = 73, RegionName = "Strendur"},
+
+                // Region - Chulbran (74)
+                new IllyRegions
+                {IllyRegionID = 74, RegionName = "Chulbran"},
+
+                // Region - Jurgor (75)
+                new IllyRegions
+                {IllyRegionID = 75, RegionName = "Jurgor"},
+
+                // Region - The Long White (76)
+                new IllyRegions
+                {IllyRegionID = 76, RegionName = "The Long White"},
+
+                // Region - Unknown Lands (77)
+                new IllyRegions
+                {IllyRegionID = 77, RegionName = "Unknown Lands"},
+
+            };
+            context.IllyRegions.AddRange(illyRegionsData);
+            context.SaveChanges();
+
+        }
     }
 }

@@ -21,6 +21,20 @@ namespace IllyriadAssist.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MD_ILLY_REGIONS",
+                columns: table => new
+                {
+                    REGION_ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ILLY_REGION_ID = table.Column<int>(maxLength: 3, nullable: false),
+                    REGION_NAME = table.Column<string>(maxLength: 100, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MD_ILLY_REGIONS", x => x.REGION_ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MD_RARE_MINERALS",
                 columns: table => new
                 {
@@ -45,11 +59,14 @@ namespace IllyriadAssist.Migrations
                     NOTIFY_ID = table.Column<string>(maxLength: 40, nullable: false),
                     NOTIFY_TYPE = table.Column<string>(maxLength: 4, nullable: false),
                     CITY_NAME = table.Column<string>(maxLength: 100, nullable: false),
+                    CITY_X_GRID = table.Column<string>(maxLength: 5, nullable: false),
+                    CITY_Y_GRID = table.Column<string>(maxLength: 5, nullable: false),
+                    ILLY_ITEM_CODE = table.Column<string>(maxLength: 10, nullable: false),
+                    ITEM_CATEGORY = table.Column<string>(maxLength: 4, nullable: false),
                     ITEM_X_GRID = table.Column<string>(maxLength: 5, nullable: false),
                     ITEM_Y_GRID = table.Column<string>(maxLength: 5, nullable: false),
-                    ITEM_CATEGORY = table.Column<string>(maxLength: 4, nullable: false),
-                    API_ILLY_CODE = table.Column<string>(maxLength: 10, nullable: false),
-                    GRID_QUANTITY = table.Column<string>(maxLength: 10, nullable: false)
+                    GRID_QUANTITY = table.Column<string>(maxLength: 10, nullable: false),
+                    ILLY_REGION_ID = table.Column<string>(maxLength: 3, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -61,6 +78,9 @@ namespace IllyriadAssist.Migrations
         {
             migrationBuilder.DropTable(
                 name: "MD_API_SETTINGS");
+
+            migrationBuilder.DropTable(
+                name: "MD_ILLY_REGIONS");
 
             migrationBuilder.DropTable(
                 name: "MD_RARE_MINERALS");
