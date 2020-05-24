@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace IllyriadAssist.Models
 {
-    [Table("USER_API_DATA")]
+    [Table("USER_ILLY_DATA")]
     public class illyData
     {
 
@@ -18,7 +18,28 @@ namespace IllyriadAssist.Models
         [StringLength(40, ErrorMessage = "Notification ID cannot be longer than 40 characters.")]
         [Column("NOTIFY_ID")]
         [Display(Name = "Notification ID")]
-        public string APINotificationID { get; set; }
+        public int APINotificationID { get; set; }
+
+        //API NOTIFICATION TYPE ID - POPULATES FROM API FEED
+        [Required]
+        [StringLength(4, ErrorMessage = "Notification Type ID cannot be longer than 4 characters.")]
+        [Column("NOTIFY_TYPE_ID")]
+        [Display(Name = "Notification Type ID")]
+        public int APINotificationTypeID { get; set; }
+
+        //API NOTIFICATION CATEGORY ID - POPULATES FROM API FEED
+        [Required]
+        [StringLength(2, ErrorMessage = "Notification Category ID cannot be longer than 2 characters.")]
+        [Column("NOTIFY_CAT_ID")]
+        [Display(Name = "Notification Category ID")]
+        public int APINotificationCategoryID { get; set; }
+
+        //API NOTIFICATION CATEGORY - POPULATES FROM API FEED
+        [Required]
+        [StringLength(20, ErrorMessage = "Notification Category cannot be longer than 20 characters.")]
+        [Column("NOTIFY_CATEGORY")]
+        [Display(Name = "Notification Category")]
+        public string APINotificationCategory { get; set; }
 
         //API DATA TYPE - MAIL & NOTI
         [Required]
@@ -62,14 +83,14 @@ namespace IllyriadAssist.Models
         [Display(Name = "Item Category")]
         public string ItemCategory { get; set; }
 
-        //API X_GRID - POPULATES FROM API FEED
+        //API ITEM X_GRID - POPULATES FROM API FEED
         [Required]
         [StringLength(5, ErrorMessage = "X Grid cannot be longer than 5 characters.")]
         [Column("ITEM_X_GRID")]
         [Display(Name = "X")]
         public string ItemXGrid { get; set; }
 
-        //API Y_GRID - POPULATES FROM API FEED
+        //API ITEM Y_GRID - POPULATES FROM API FEED
         [Required]
         [StringLength(5, ErrorMessage = "Y Grid cannot be longer than 5 characters.")]
         [Column("ITEM_Y_GRID")]
@@ -89,6 +110,13 @@ namespace IllyriadAssist.Models
         [Column("ILLY_REGION_ID")]
         [Display(Name = "Illyriad Region ID")]
         public string IllyRegionID { get; set; }
+
+        //REGION ID - POPULATES FROM API FEED
+        [Required]
+        [StringLength(30, ErrorMessage = "Notification Date (UTC) cannot be longer than 30 characters.")]
+        [Column("NOTIFICATION_DATE")]
+        [Display(Name = "Notification Date (UTC)")]
+        public string NotificationDate { get; set; }
 
     }
 }

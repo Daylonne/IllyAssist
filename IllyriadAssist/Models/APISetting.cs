@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace IllyriadAssist.Models
 {
     [Table("MD_API_SETTINGS")]
-    public class APISettings
+    public class APISetting
     {
         [Key]
         [Column("API_ID")]

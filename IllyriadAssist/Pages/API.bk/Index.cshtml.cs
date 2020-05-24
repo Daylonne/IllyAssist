@@ -19,11 +19,11 @@ namespace IllyriadAssist.Pages.API
             _context = context;
         }
 
-        public IList<APISetting> APISetting { get;set; }
+        public IList<APISetting> APISettings { get;set; }
 
         public async Task OnGetAsync()
         {
-            APISetting = await _context.APISettings.ToListAsync();
+            APISettings = await _context.APISettings.ToListAsync();
         }
     }
 }

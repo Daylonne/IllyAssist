@@ -8,22 +8,22 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <!--<a asp-page="Create">Create New</a>-->
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.APISetting[0].APIType)
+                @Html.DisplayNameFor(model => model.APISettings[0].APIType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.APISetting[0].APIKey)
+                @Html.DisplayNameFor(model => model.APISettings[0].APIKey)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.APISetting) {
+@foreach (var item in Model.APISettings) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.APIType)
@@ -32,9 +32,9 @@
                 @Html.DisplayFor(modelItem => item.APIKey)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.APIid">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.APIid">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.APIid">Delete</a>
+                <a asp-page="./Edit" asp-route-id="@item.APIid">Update</a> |
+                <a asp-page="./Details" asp-route-id="@item.APIid">Details</a> <!--|-->
+                <!--<a asp-page="./Delete" asp-route-id="@item.APIid">Delete</a>-->
             </td>
         </tr>
 }

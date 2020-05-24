@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using IllyriadAssist.Data;
 using IllyriadAssist.Models;
 
-namespace IllyriadAssist.Pages.API
+namespace IllyriadAssist.Pages.harvestableInventory
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace IllyriadAssist.Pages.API
             _context = context;
         }
 
-        public IList<APISetting> APISetting { get;set; }
+        public IList<illyData> illyData { get;set; }
 
         public async Task OnGetAsync()
         {
-            APISetting = await _context.APISettings.ToListAsync();
+            illyData = await _context.IllyAPIData.ToListAsync();
         }
     }
 }

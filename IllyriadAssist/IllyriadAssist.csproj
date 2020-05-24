@@ -5,11 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\API\Create.cshtml.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="Pages\API\Create.cshtml" />
+    <Compile Remove="Pages\API.bk\**" />
+    <Content Remove="Pages\API.bk\**" />
+    <EmbeddedResource Remove="Pages\API.bk\**" />
+    <None Remove="Pages\API.bk\**" />
   </ItemGroup>
 
   <ItemGroup>

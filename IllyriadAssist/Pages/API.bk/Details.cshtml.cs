@@ -19,7 +19,7 @@ namespace IllyriadAssist.Pages.API
             _context = context;
         }
 
-        public APISetting APISetting { get; set; }
+        public APISetting APISettings { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,9 +28,9 @@ namespace IllyriadAssist.Pages.API
                 return NotFound();
             }
 
-            APISetting = await _context.APISettings.FirstOrDefaultAsync(m => m.APIid == id);
+            APISettings = await _context.APISettings.FirstOrDefaultAsync(m => m.APIid == id);
 
-            if (APISetting == null)
+            if (APISettings == null)
             {
                 return NotFound();
             }

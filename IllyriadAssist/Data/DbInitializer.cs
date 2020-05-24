@@ -147,10 +147,10 @@ namespace IllyriadAssist.Data
                 return; // API Settings Table has been seeded.
             }
 
-            var apiSettingsData = new APISettings[]
+            var apiSettingsData = new APISetting[]
             {
                 // Notification APISettings
-                new APISettings
+                new APISetting
                 {APIType = "Notifications"},
 
                 // InGame Mail APISettings

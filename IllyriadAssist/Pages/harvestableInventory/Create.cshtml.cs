@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using IllyriadAssist.Data;
 using IllyriadAssist.Models;
 
-namespace IllyriadAssist.Pages.API
+namespace IllyriadAssist.Pages.harvestableInventory
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace IllyriadAssist.Pages.API
         }
 
         [BindProperty]
-        public APISetting APISetting { get; set; }
+        public illyData illyData { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -36,7 +36,7 @@ namespace IllyriadAssist.Pages.API
                 return Page();
             }
 
-            _context.APISettings.Add(APISetting);
+            _context.IllyAPIData.Add(illyData);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

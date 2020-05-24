@@ -1,0 +1,112 @@
+﻿@page
+@model IllyriadAssist.Pages.harvestableInventory.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>illyData</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.APINotificationID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.APINotificationID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.APINotificationTypeID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.APINotificationTypeID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.APINotificationCategoryID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.APINotificationCategoryID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.APINotificationCategory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.APINotificationCategory)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.APINotificationType)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.APINotificationType)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.CityName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.CityName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.CityXGrid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.CityXGrid)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.CityYGrid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.CityYGrid)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.IllyriadCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.IllyriadCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.ItemCategory)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.ItemCategory)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.ItemXGrid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.ItemXGrid)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.ItemYGrid)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.ItemYGrid)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.GridQuantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.GridQuantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.IllyRegionID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.IllyRegionID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.illyData.NotificationDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.illyData.NotificationDate)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="illyData.RecordID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

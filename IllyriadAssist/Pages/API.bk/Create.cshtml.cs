@@ -25,7 +25,7 @@ namespace IllyriadAssist.Pages.API
         }
 
         [BindProperty]
-        public APISetting APISetting { get; set; }
+        public APISettings APISettings { get; set; }
 
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://aka.ms/RazorPagesCRUD.
@@ -36,7 +36,7 @@ namespace IllyriadAssist.Pages.API
                 return Page();
             }
 
-            _context.APISettings.Add(APISetting);
+            _context.APISettings.Add(APISettings);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

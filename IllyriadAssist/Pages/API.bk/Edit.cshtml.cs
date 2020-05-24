@@ -21,7 +21,7 @@ namespace IllyriadAssist.Pages.API
         }
 
         [BindProperty]
-        public APISetting APISetting { get; set; }
+        public APISetting APISettings { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,9 +30,9 @@ namespace IllyriadAssist.Pages.API
                 return NotFound();
             }
 
-            APISetting = await _context.APISettings.FirstOrDefaultAsync(m => m.APIid == id);
+            APISettings = await _context.APISettings.FirstOrDefaultAsync(m => m.APIid == id);
 
-            if (APISetting == null)
+            if (APISettings == null)
             {
                 return NotFound();
             }
@@ -48,7 +48,7 @@ namespace IllyriadAssist.Pages.API
                 return Page();
             }
 
-            _context.Attach(APISetting).State = EntityState.Modified;
+            _context.Attach(APISettings).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace IllyriadAssist.Pages.API
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!APISettingExists(APISetting.APIid))
+                if (!APISettingsExists(APISettings.APIid))
                 {
                     return NotFound();
                 }
@@ -69,7 +69,7 @@ namespace IllyriadAssist.Pages.API
             return RedirectToPage("./Index");
         }
 
-        private bool APISettingExists(int id)
+        private bool APISettingsExists(int id)
         {
             return _context.APISettings.Any(e => e.APIid == id);
         }

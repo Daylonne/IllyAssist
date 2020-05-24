@@ -15,7 +15,7 @@ namespace IllyriadAssist.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.4");
 
-            modelBuilder.Entity("IllyriadAssist.Models.APISettings", b =>
+            modelBuilder.Entity("IllyriadAssist.Models.APISetting", b =>
                 {
                     b.Property<int>("APIid")
                         .ValueGeneratedOnAdd()
@@ -103,16 +103,31 @@ namespace IllyriadAssist.Migrations
                         .HasColumnName("RECORD_ID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("APINotificationID")
+                    b.Property<string>("APINotificationCategory")
                         .IsRequired()
-                        .HasColumnName("NOTIFY_ID")
+                        .HasColumnName("NOTIFY_CATEGORY")
                         .HasColumnType("TEXT")
+                        .HasMaxLength(20);
+
+                    b.Property<int>("APINotificationCategoryID")
+                        .HasColumnName("NOTIFY_CAT_ID")
+                        .HasColumnType("INTEGER")
+                        .HasMaxLength(2);
+
+                    b.Property<int>("APINotificationID")
+                        .HasColumnName("NOTIFY_ID")
+                        .HasColumnType("INTEGER")
                         .HasMaxLength(40);
 
                     b.Property<string>("APINotificationType")
                         .IsRequired()
                         .HasColumnName("NOTIFY_TYPE")
                         .HasColumnType("TEXT")
+                        .HasMaxLength(4);
+
+                    b.Property<int>("APINotificationTypeID")
+                        .HasColumnName("NOTIFY_TYPE_ID")
+                        .HasColumnType("INTEGER")
                         .HasMaxLength(4);
 
                     b.Property<string>("CityName")
@@ -169,9 +184,15 @@ namespace IllyriadAssist.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(5);
 
+                    b.Property<string>("NotificationDate")
+                        .IsRequired()
+                        .HasColumnName("NOTIFICATION_DATE")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
+
                     b.HasKey("RecordID");
 
-                    b.ToTable("USER_API_DATA");
+                    b.ToTable("USER_ILLY_DATA");
                 });
 #pragma warning restore 612, 618
         }

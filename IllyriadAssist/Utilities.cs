@@ -6,18 +6,26 @@ using System.Xml.Linq;
 using System.Text.RegularExpressions;
 using IllyriadAssist.Data;
 using IllyriadAssist.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace IllyriadAssist
 {
-    public class NotificationDTO
+    public class RegExList
     {
+        public string CityName { get; set; }
+        public string CityGridX { get; set; }
+        public string CityGridY { get; set; }
+        public string ItemGridX { get; set; }
+        public string ItemGridY { get; set; }
+        public string RegionID { get; set; }
+        public string ItemIllyCode { get; set; }
+        public string ItemGridQty { get; set; }
+        public string OccurrenceDate { get; set; }
 
     }
     public class Utilities
     {
         //Function to Disassemble Harvester Notifications
-        static void DisassembleHarvestNotify(string notifyText)
+        public static RegExList DisassembleHarvestNotify(string notifyText)
         {
             //Illy Miner Harvester Codes
             string humanMiner = "[@i=5|678]";
@@ -36,6 +44,9 @@ namespace IllyriadAssist
             MatchCollection harvesterCodeMatches = rgxHarvesterType.Matches(notifyText);
             string harvesterIllyCode = harvesterCodeMatches[0].Value;
 
+            // Create a List Object to store RegExResults
+            var regExResults = new RegExList();
+
             //If Unit Code is of a Miner - Continue
             if (harvesterIllyCode.Contains(humanMiner) || harvesterIllyCode.Contains(elvenMiner) ||
                 harvesterIllyCode.Contains(dwarvenMiner) || harvesterIllyCode.Contains(orcMiner))
@@ -45,56 +56,44 @@ namespace IllyriadAssist
                 MatchCollection gridAndRegionMatches = rgxGridsAndRegionID.Matches(notifyText);
                 MatchCollection itemIllyCodeMatches = rgxItemIllyCode.Matches(notifyText);
                 MatchCollection itemQtyOnGridMatches = rgxItemQtyOnGrid.Matches(notifyText);
-
-                //Link Individual Matches with Variables (Replace with DB Inserts)
-                string cityName = cityMatches[0].Value;
-                string cityGridX = gridAndRegionMatches[0].Value;
-                string cityGridY = gridAndRegionMatches[1].Value;
-                string itemGridX = gridAndRegionMatches[7].Value;
-                string itemGridY = gridAndRegionMatches[8].Value;
-                string illyRegionID = gridAndRegionMatches[9].Value;
-                string itemIllyCode = itemIllyCodeMatches[0].Value;
-
-                //Bug Checking WriteLines (Remove or comment out)
-                Console.WriteLine(cityName);
-                Console.WriteLine(cityGridX + "|" + cityGridY);
-                Console.WriteLine(itemGridX + "|" + itemGridY);
-                Console.WriteLine(illyRegionID);
-                Console.WriteLine(itemIllyCode);
+                
+                //Link Individual Matches
+                regExResults.CityName = cityMatches[0].Value;
+                regExResults.CityGridX = gridAndRegionMatches[0].Value;
+                regExResults.CityGridY = gridAndRegionMatches[1].Value;
+                regExResults.ItemGridX = gridAndRegionMatches[7].Value;
+                regExResults.ItemGridY = gridAndRegionMatches[8].Value;
+                regExResults.RegionID = gridAndRegionMatches[9].Value;
+                regExResults.ItemIllyCode = itemIllyCodeMatches[0].Value;
 
                 // Check if there is anything left on Grid
                 if (itemQtyOnGridMatches.Count > 0)
                 {
-                    string itemQtyOnGrid = itemQtyOnGridMatches[0].Value.Substring(2).Trim();
-                    Console.WriteLine(itemQtyOnGrid);
+                    regExResults.ItemGridQty = itemQtyOnGridMatches[0].Value.Substring(2).Trim(); // Quantity on Grid [7]
                 }
                 else
                 {
-                    string itemQtyOnGrid = "0";
-                    Console.WriteLine(itemQtyOnGrid);
+
+                    regExResults.ItemGridQty = "0"; // Quantity on Grid [7]
+                        
                 }
 
             }
+
+            return regExResults;
 
         }
 
         //Function to Parse Illyriad's XML
-        static void XMLParser()
+        public void XMLParser(IllyContext context)
         {
 
-            // WIP ----------------------------------------->
-            var context = new APISettings();
-            {
-                var apiKey = context.APIKey
-                        .Where(a => a.APIType == "NOTI")
-                        .Select(a => new {a.APIKey});
-                
-            }
-            // WIP ----------------------------------------->
+            var apiKey = context.APISettings.Single(APISettings => APISettings.APIType == "NOTI").APIKey;
 
-            String URLString = "https://elgea.illyriad.co.uk/external/notificationsapi/elgea-NOTIF-AQAAACYJ4FPt1gclDBjwN8Td0SM18meND-A19hm6z_35xzZD9knARdCfbM72eNBFYOD3zj88QePn6CKHyP882nPuJl8=";
+            String illyriadLink = "https://elgea.illyriad.co.uk/external/notificationsapi/";
+            String notifyURLapi = illyriadLink + apiKey;
             var client = new WebClient();
-            var xml = client.DownloadString(URLString);
+            var xml = client.DownloadString(notifyURLapi);
             var xmlDoc = XDocument.Parse(xml);
             IEnumerable<XElement> XElementList =
                 from el in xmlDoc.Root.Elements()
@@ -120,14 +119,38 @@ namespace IllyriadAssist
                             string notificationDetail = xNotify.Element("notificationdetail").Value;
                             string notificationOccurrence = xNotify.Element("notificationoccurrencedate").Value;
 
-                            Console.WriteLine("Notification Type ID: " + notificationTypeID);
-                            Console.WriteLine("Notification Category ID: " + notificationCategoryID);
-                            Console.WriteLine("Notification Category: " + notificationCategory);
-                            Console.WriteLine("Notification Detail: " + notificationDetail);
-                            Console.WriteLine("Notification Occurrence: " + notificationOccurrence);
-                            Console.WriteLine("");
+                            var HarvestResults = DisassembleHarvestNotify(xNotify.Element("notificationdetail").Value);
+
+
+                            var InsertOrUpddateNotify = new illyData[]
+                            {
+                                // Data to Add for Notification
+                                new illyData
+                                {
+                                    APINotificationID = Int32.Parse(notificationID),
+                                    APINotificationTypeID = Int32.Parse(notificationTypeID),
+                                    APINotificationCategoryID = Int32.Parse(notificationCategoryID),
+                                    APINotificationCategory = notificationCategory,
+                                    NotificationDate = HarvestResults.OccurrenceDate,
+                                    APINotificationType = "NOTI",
+                                    ItemCategory = "MINR",
+                                    CityName = HarvestResults.CityName, 
+                                    CityXGrid = HarvestResults.CityGridX, 
+                                    CityYGrid = HarvestResults.CityGridY, 
+                                    ItemXGrid = HarvestResults.ItemGridX, 
+                                    ItemYGrid = HarvestResults.ItemGridY, 
+                                    IllyRegionID = HarvestResults.RegionID, 
+                                    IllyriadCode = HarvestResults.ItemIllyCode, 
+                                    GridQuantity = HarvestResults.ItemGridQty,
+
+                                }
+
+                            };
+
+                            context.IllyAPIData.AddRange(InsertOrUpddateNotify);
 
                         }
+
                         else
                         {
                             string wrongTypeID = xNotify.Element("notificationtype").Attribute("id").Value;
@@ -135,6 +158,7 @@ namespace IllyriadAssist
                             Console.WriteLine("");
                         }
 
+                        context.SaveChanges();
 
                     }
 
@@ -142,14 +166,7 @@ namespace IllyriadAssist
 
             }
 
-
-            //Steve's Solution
-            //foreach (XElement element in xElementList)
-            //{
-            //if (element.HasElements)
-            //{
-            //if(element.Element("notification").Where(p => p.Element("notification").Attribute("id").Value == "45"))
-
         }
+
     }
 }

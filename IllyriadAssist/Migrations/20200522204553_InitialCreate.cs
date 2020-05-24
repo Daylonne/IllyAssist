@@ -51,12 +51,15 @@ namespace IllyriadAssist.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "USER_API_DATA",
+                name: "USER_ILLY_DATA",
                 columns: table => new
                 {
                     RECORD_ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    NOTIFY_ID = table.Column<string>(maxLength: 40, nullable: false),
+                    NOTIFY_ID = table.Column<int>(maxLength: 40, nullable: false),
+                    NOTIFY_TYPE_ID = table.Column<int>(maxLength: 4, nullable: false),
+                    NOTIFY_CAT_ID = table.Column<int>(maxLength: 2, nullable: false),
+                    NOTIFY_CATEGORY = table.Column<string>(maxLength: 20, nullable: false),
                     NOTIFY_TYPE = table.Column<string>(maxLength: 4, nullable: false),
                     CITY_NAME = table.Column<string>(maxLength: 100, nullable: false),
                     CITY_X_GRID = table.Column<string>(maxLength: 5, nullable: false),
@@ -66,11 +69,12 @@ namespace IllyriadAssist.Migrations
                     ITEM_X_GRID = table.Column<string>(maxLength: 5, nullable: false),
                     ITEM_Y_GRID = table.Column<string>(maxLength: 5, nullable: false),
                     GRID_QUANTITY = table.Column<string>(maxLength: 10, nullable: false),
-                    ILLY_REGION_ID = table.Column<string>(maxLength: 3, nullable: false)
+                    ILLY_REGION_ID = table.Column<string>(maxLength: 3, nullable: false),
+                    NOTIFICATION_DATE = table.Column<string>(maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_USER_API_DATA", x => x.RECORD_ID);
+                    table.PrimaryKey("PK_USER_ILLY_DATA", x => x.RECORD_ID);
                 });
         }
 
@@ -86,7 +90,7 @@ namespace IllyriadAssist.Migrations
                 name: "MD_RARE_MINERALS");
 
             migrationBuilder.DropTable(
-                name: "USER_API_DATA");
+                name: "USER_ILLY_DATA");
         }
     }
 }
