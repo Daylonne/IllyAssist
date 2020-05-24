@@ -1,5 +1,5 @@
 ﻿@page
-@model IndexModel
+@model IllyridAssist.Pages.IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
@@ -7,6 +7,12 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <h3>The time on the server is @DateTime.Now</h3>
-
-    Test Trigger for Notification Population--> <form method="post"><input type="submit" value="Update Notifications"/></form>
+    <p></p>
+    Test Trigger for Notification Population--> <form asp-page-handler="ParseXML" method="post">
+    <button class="btn btn-default">CLICK ME</button>
+</form>
+    <p></p>
+    <h3>@Model.Message</h3>
 </div>
+
+
