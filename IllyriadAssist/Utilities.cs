@@ -88,7 +88,10 @@ namespace IllyriadAssist
         public void XMLParser(IllyContext context)
         {
 
-            var apiKey = context.APISettings.Single(APISettings => APISettings.APIType == "NOTI").APIKey;
+            var apiKey = context.APISettings
+                         .Where(w => w.APIid == 1)
+                         .Select(w => w.APIKey)
+                         .Single();
 
             String illyriadLink = "https://elgea.illyriad.co.uk/external/notificationsapi/";
             String notifyURLapi = illyriadLink + apiKey;
@@ -119,8 +122,64 @@ namespace IllyriadAssist
                             string notificationDetail = xNotify.Element("notificationdetail").Value;
                             string notificationOccurrence = xNotify.Element("notificationoccurrencedate").Value;
 
-                            var HarvestResults = DisassembleHarvestNotify(xNotify.Element("notificationdetail").Value);
+                            //var HarvestResults =  DisassembleHarvestNotify(xNotify.Element("notificationdetail").Value);
 
+                            //Illy Miner Harvester Codes
+                            string humanMiner = "[@i=5|678]";
+                            string elvenMiner = "[@i=5|682]";
+                            string dwarvenMiner = "[@i=5|686]";
+                            string orcMiner = "[@i=5|690]";
+
+                            //REGEX Strings for Notifications
+                            Regex rgxHarvesterType = new Regex(@"\[@i=.{1,6}");
+                            Regex rgxCityName = new Regex(@"(?<=\[@t=)(.*?)(?=\|)");
+                            Regex rgxGridsAndRegionID = new Regex(@"(?<=\|)(\d{1,3}?)(?=\|)|(?<=\=)(\d{3}?)(?=\|)");
+                            Regex rgxItemIllyCode = new Regex(@"\[@c=.{1,4}");
+                            Regex rgxItemQtyOnGrid = new Regex(@"(\.\s)(\d*)(\s)");
+
+                            //Check to make sure only Miner units (need to populate Rare Herbs)
+                            MatchCollection harvesterCodeMatches = rgxHarvesterType.Matches(notificationDetail);
+                            string harvesterIllyCode = harvesterCodeMatches[0].Value;
+
+                            // Create a List Object to store RegExResults
+                            var regExResults = new RegExList();
+
+                            //If Unit Code is of a Miner - Continue
+                            if (harvesterIllyCode.Contains(humanMiner) || harvesterIllyCode.Contains(elvenMiner) ||
+                                harvesterIllyCode.Contains(dwarvenMiner) || harvesterIllyCode.Contains(orcMiner))
+                            {
+                                //Assemble RegEx Match Collections
+                                MatchCollection cityMatches = rgxCityName.Matches(notificationDetail);
+                                MatchCollection gridAndRegionMatches = rgxGridsAndRegionID.Matches(notificationDetail);
+                                MatchCollection itemIllyCodeMatches = rgxItemIllyCode.Matches(notificationDetail);
+                                MatchCollection itemQtyOnGridMatches = rgxItemQtyOnGrid.Matches(notificationDetail);
+
+                                //Link Individual Matches
+                                regExResults.CityName = cityMatches[0].Value;
+                                regExResults.CityGridX = gridAndRegionMatches[0].Value;
+                                regExResults.CityGridY = gridAndRegionMatches[1].Value;
+                                regExResults.ItemGridX = gridAndRegionMatches[7].Value;
+                                regExResults.ItemGridY = gridAndRegionMatches[8].Value;
+                                regExResults.RegionID = gridAndRegionMatches[9].Value;
+                                regExResults.ItemIllyCode = itemIllyCodeMatches[0].Value;
+
+                                // Check if there is anything left on Grid
+                                if (itemQtyOnGridMatches.Count > 0)
+                                {
+                                    regExResults.ItemGridQty = itemQtyOnGridMatches[0].Value.Substring(2).Trim(); // Quantity on Grid [7]
+                                }
+                                else
+                                {
+
+                                    regExResults.ItemGridQty = "0"; // Quantity on Grid [7]
+
+                                }
+
+                            }
+                            else
+                            {
+                                continue;
+                            }
 
                             var InsertOrUpddateNotify = new illyData[]
                             {
@@ -131,17 +190,17 @@ namespace IllyriadAssist
                                     APINotificationTypeID = Int32.Parse(notificationTypeID),
                                     APINotificationCategoryID = Int32.Parse(notificationCategoryID),
                                     APINotificationCategory = notificationCategory,
-                                    NotificationDate = HarvestResults.OccurrenceDate,
+                                    NotificationDate = notificationOccurrence,
                                     APINotificationType = "NOTI",
                                     ItemCategory = "MINR",
-                                    CityName = HarvestResults.CityName, 
-                                    CityXGrid = HarvestResults.CityGridX, 
-                                    CityYGrid = HarvestResults.CityGridY, 
-                                    ItemXGrid = HarvestResults.ItemGridX, 
-                                    ItemYGrid = HarvestResults.ItemGridY, 
-                                    IllyRegionID = HarvestResults.RegionID, 
-                                    IllyriadCode = HarvestResults.ItemIllyCode, 
-                                    GridQuantity = HarvestResults.ItemGridQty,
+                                    CityName = regExResults.CityName, 
+                                    CityXGrid = regExResults.CityGridX, 
+                                    CityYGrid = regExResults.CityGridY, 
+                                    ItemXGrid = regExResults.ItemGridX, 
+                                    ItemYGrid = regExResults.ItemGridY, 
+                                    IllyRegionID = regExResults.RegionID, 
+                                    IllyriadCode = regExResults.ItemIllyCode, 
+                                    GridQuantity = regExResults.ItemGridQty,
 
                                 }
 

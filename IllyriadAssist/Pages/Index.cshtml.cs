@@ -6,6 +6,7 @@ using IllyriadAssist.Models;
 using Microsoft.Extensions.Logging;
 using IllyriadAssist;
 using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace IllyridAssist.Pages
 {
@@ -41,7 +42,7 @@ namespace IllyridAssist.Pages
 
         public async Task OnPostParseXML()
         {
-            Console.WriteLine("Button was Clicked!");
+
             Utilities xmlParser = new Utilities();
             xmlParser.XMLParser(_context);
 
