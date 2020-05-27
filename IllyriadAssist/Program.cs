@@ -9,6 +9,10 @@ namespace IllyriadAssist
 {
     public class Program
     {
+        public Uri NotifyURL = new Uri("https://myWebsite/files/");
+        public Uri MailURL = new Uri("");
+        public Uri MailBodyURL = new Uri("");
+
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();

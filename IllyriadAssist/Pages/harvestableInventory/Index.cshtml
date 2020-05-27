@@ -1,6 +1,7 @@
 ﻿@page
 @model IllyriadAssist.Pages.harvestableInventory.IndexModel
 
+
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,113 +9,67 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Index">By City</a> | <a asp-page="byRegion">By Region</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].APINotificationID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].APINotificationTypeID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].APINotificationCategoryID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].APINotificationCategory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].APINotificationType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].CityName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].CityXGrid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].CityYGrid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].IllyriadCode)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].ItemCategory)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].ItemXGrid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].ItemYGrid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].GridQuantity)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].IllyRegionID)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.illyData[0].NotificationDate)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.illyData) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.APINotificationID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.APINotificationTypeID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.APINotificationCategoryID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.APINotificationCategory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.APINotificationType)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CityName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CityXGrid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CityYGrid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IllyriadCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemCategory)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemXGrid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ItemYGrid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.GridQuantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IllyRegionID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NotificationDate)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.RecordID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.RecordID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.RecordID">Delete</a>
-            </td>
-        </tr>
+@foreach (var city in Model.Cities)
+{
+    <h3>@city.DistinctCityName (@city.DistinctCityX | @city.DistinctCityY)</h3>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    Item Name
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.illyData[0].ItemXGrid)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.illyData[0].ItemYGrid)
+                </th>
+                <th>
+                    Quantity on Grid
+                </th>
+                <th>
+                    Last Updated
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.RecentNotifies.Where(i => i.CityName == city.DistinctCityName)){
+                @foreach (var indRes in Model.RareResources.Where(r => r.ResourceCode == item.IllyriadCode)){
+            <tr>
+                <td>
+                    <img src="~/gameImages/rareMinerals/@indRes.ImageName" alt=@indRes.ResourceDescription />
+                </td>
+                <td>
+                    @indRes.ResourceName
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemXGrid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemYGrid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GridQuantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotificationDate)
+                </td>
+                <td>
+                    <!--<a asp-page="./Edit" asp-route-id="@item.RecordID">Edit</a> |
+            <a asp-page="./Details" asp-route-id="@item.RecordID">Details</a> |
+            <a asp-page="./Delete" asp-route-id="@item.RecordID">Delete</a>-->
+                </td>
+            </tr>
+
+                }
+            }
+        </tbody>       
+    </table>
 }
-    </tbody>
-</table>
