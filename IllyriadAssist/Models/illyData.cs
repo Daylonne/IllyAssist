@@ -109,7 +109,7 @@ namespace IllyriadAssist.Models
         [StringLength(3, ErrorMessage = "Illyriad Region ID cannot be longer than 3 characters.")]
         [Column("ILLY_REGION_ID")]
         [Display(Name = "Illyriad Region ID")]
-        public string IllyRegionID { get; set; }
+        public int IllyRegionID { get; set; }
 
         //REGION ID - POPULATES FROM API FEED
         [Required]

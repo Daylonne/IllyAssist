@@ -198,7 +198,7 @@ namespace IllyriadAssist
                                     CityYGrid = regExResults.CityGridY, 
                                     ItemXGrid = regExResults.ItemGridX, 
                                     ItemYGrid = regExResults.ItemGridY, 
-                                    IllyRegionID = regExResults.RegionID, 
+                                    IllyRegionID = Int32.Parse(regExResults.RegionID), 
                                     IllyriadCode = regExResults.ItemIllyCode, 
                                     GridQuantity = regExResults.ItemGridQty,
 

@@ -19,10 +19,10 @@ namespace IllyriadAssist.Pages.harvestableInventory
 
         public class RareResourcesFound
         {
-            public string ResourceName { get; set; }
-            public string ResourceDescription { get; set; }
-            public string ImageName { get; set; }
-            public string ResourceCode { get; set; }
+           public string ResourceName { get; set; }
+           public string ResourceDescription { get; set; }
+           public string ImageName { get; set; }
+           public string ResourceCode { get; set; }
 
         }
 
@@ -40,7 +40,7 @@ namespace IllyriadAssist.Pages.harvestableInventory
 
         public IList<illyData> illyData { get;set; }
         public IList<ByCityView> Cities { get; set; }
-        public IList<RareResourcesFound> RareResources { get; set; }
+        public IList<RareResourcesFound> RareResourcesCoreData { get; set; }
         public IList<illyData> RecentNotifies { get; set; }
 
 
@@ -64,17 +64,6 @@ namespace IllyriadAssist.Pages.harvestableInventory
 
             RecentNotifies = await joinQuery;
 
-            // Left off here!
-            Regions = await _context.IllyAPIData
-                        .Select(c => new //ByCityView
-                        {
-                            DistinctCityName = c.CityName,
-                            DistinctCityX = c.CityXGrid,
-                            DistinctCityY = c.CityYGrid,
-                        })
-                        .Distinct()
-                        .ToListAsync();
-
 
             Cities = await _context.IllyAPIData
                         .Select(c => new ByCityView
@@ -86,7 +75,7 @@ namespace IllyriadAssist.Pages.harvestableInventory
                         .Distinct()
                         .ToListAsync();
 
-            RareResources = await _context.RareMinerals
+            RareResourcesCoreData = await _context.RareMinerals
                         .Select(rareMins => new RareResourcesFound
                         {
                             ResourceName = rareMins.ItemName,
