@@ -160,6 +160,7 @@ namespace IllyriadAssist.Data
             context.APISettings.AddRange(apiSettingsData);
             context.SaveChanges();
 
+            // Check if Regions have been populated
             if (context.IllyRegions.Any())
             {
                 return; // Region Data Table has been seeded.
@@ -479,6 +480,192 @@ namespace IllyriadAssist.Data
 
             };
             context.IllyRegions.AddRange(illyRegionsData);
+            context.SaveChanges();
+
+            // Check if Rare Minerals has been populated.
+            if (context.RareHerbs.Any())
+            {
+                return; // Rare Minerals Table has been seeded.
+            }
+
+            var rareHerbData = new RareHerbs[]
+            {
+                // Ancient Oak
+                new RareHerbs
+                {ItemName = "Ancient Oak", IllyCode = "[c=246]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/ancientOak.png"},
+
+                // Baleberries
+                new RareHerbs
+                {ItemName = "Baleberries", IllyCode = "[c=231]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/baleberries.png"},
+
+                // Berbane Leaves
+                new RareHerbs
+                {ItemName = "Berbane Leaves", IllyCode = "[c=227]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/berbaneLeaves.png"},
+
+                // Brascan Seeds
+                new RareHerbs
+                {ItemName = "Brascan Seeds", IllyCode = "[@c=250]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/brascanSeeds.png"},
+
+                // Brownback Moss
+                new RareHerbs
+                {ItemName = "Brownback Moss", IllyCode = "[@c=243]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/brownbackMoss.png"},
+
+                // Desert Flame
+                new RareHerbs
+                {ItemName = "Desert Flame", IllyCode = "[@c=252]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/desertFlame.png"},
+
+                // Dyallom Gall
+                new RareHerbs
+                {ItemName = "Dyallom Gall", IllyCode = "[@c=233]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/dyallomGall.png"},
+
+                // Ebony Wood
+                new RareHerbs
+                {ItemName = "Ebony Wood", IllyCode = "[@c=232]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/ebonyWood.png"},
+
+                // Furzion Seedpod
+                new RareHerbs
+                {ItemName = "Furzion Seedpod", IllyCode = "[@c=239]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/furzionSeedpod.png"},
+
+                // Giant Palm Leaves
+                new RareHerbs
+                {ItemName = "Giant Palm Leaves", IllyCode = "[@c=251]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/giantPalmLeaves.png"},
+
+                // Ironstem Root
+                new RareHerbs
+                {ItemName = "Ironstem Root", IllyCode = "[@c=235]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/ironstemRoot.png"},
+
+                // Larkenwood
+                new RareHerbs
+                {ItemName = "Larkenwood", IllyCode = "[@c=226]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/larkenwood.png"},
+
+                // Lemonwood Bough
+                new RareHerbs
+                {ItemName = "Lemonwood Bough", IllyCode = "[@c=225]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/lemonwoodBough.png"},
+
+                // Mabri Fruit
+                new RareHerbs
+                {ItemName = "Mabri Fruit", IllyCode = "[@c=229]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/mabriFruit.png"},
+
+                // Miner's Bane
+                new RareHerbs
+                {ItemName = "Miner's Bane", IllyCode = "[@c=236]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/minersBane.png"},
+
+                // Pale Cedar Wood
+                new RareHerbs
+                {ItemName = "Pale Cedar Wood", IllyCode = "[@c=224]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/paleCedarWood.png"},
+
+                // Punfruit
+                new RareHerbs
+                {ItemName = "Punfruit", IllyCode = "[@c=230]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/punfruit.png"},
+
+                // Queen's Hair Leaves
+                new RareHerbs
+                {ItemName = "Queen's Hair Leaves", IllyCode = "[@c=248]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/queensHairLeaves.png"},
+
+                // Rahan Palm Wood
+                new RareHerbs
+                {ItemName = "Rahan Palm Wood", IllyCode = "[@c=247]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/rahanPalmWood.png"},
+
+                // Rockweed Root
+                new RareHerbs
+                {ItemName = "Rockweed Root", IllyCode = "[@c=241]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/rockweedRoot.png"},
+
+                // Sharproot
+                new RareHerbs
+                {ItemName = "Sharproot", IllyCode = "[@c=245]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/sharproot.png"},
+
+                // Silverthorn
+                new RareHerbs
+                {ItemName = "Silverthorn", IllyCode = "[@c=244]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/silverthorn.png"},
+
+                // Snowbell Flowers
+                new RareHerbs
+                {ItemName = "Snowbell Flowers", IllyCode = "[@c=237]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/snowbellFlowers.png"},
+
+                // Spidertree Leaves
+                new RareHerbs
+                {ItemName = "Spidertree Leaves", IllyCode = "[@c=249]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/spidertreeLeaves.png"},
+
+                // Suntree Haft
+                new RareHerbs
+                {ItemName = "Suntree Haft", IllyCode = "[@c=242]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/suntreeHaft.png"},
+
+                // Toadcap Fungus
+                new RareHerbs
+                {ItemName = "Toadcap Fungus", IllyCode = "[@c=238]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/toadcapFungus.png"},
+
+                // Vistrok Flower
+                new RareHerbs
+                {ItemName = "Vistrok Flower", IllyCode = "[@c=240]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/vistrokFlower.png"},
+
+                // Warpwood Shoot
+                new RareHerbs
+                {ItemName = "Warpwood Shoot", IllyCode = "[@c=234]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/warpwoodShoot.png"},
+
+                // Ysanberries
+                new RareHerbs
+                {ItemName = "Ysanberries", IllyCode = "[@c=228]",
+                 ItemDescription = "",
+                 ImageName = "rareHerbs/ysanberries.png"},
+
+            };
+            context.RareHerbs.AddRange(rareHerbData);
             context.SaveChanges();
 
         }
