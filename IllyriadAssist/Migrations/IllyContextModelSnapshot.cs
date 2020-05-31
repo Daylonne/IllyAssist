@@ -60,6 +60,41 @@ namespace IllyriadAssist.Migrations
                     b.ToTable("MD_ILLY_REGIONS");
                 });
 
+            modelBuilder.Entity("IllyriadAssist.Models.RareHerbs", b =>
+                {
+                    b.Property<int>("ItemID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ITEM_ID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("IllyCode")
+                        .IsRequired()
+                        .HasColumnName("ILLY_CODE")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnName("IMAGE_NAME")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("ItemDescription")
+                        .HasColumnName("ITEM_DESCRIPTION")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(1000000);
+
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnName("ITEM_NAME")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
+
+                    b.HasKey("ItemID");
+
+                    b.ToTable("MD_RARE_HERBS");
+                });
+
             modelBuilder.Entity("IllyriadAssist.Models.RareMinerals", b =>
                 {
                     b.Property<int>("ItemID")
@@ -154,10 +189,9 @@ namespace IllyriadAssist.Migrations
                         .HasColumnType("TEXT")
                         .HasMaxLength(10);
 
-                    b.Property<string>("IllyRegionID")
-                        .IsRequired()
+                    b.Property<int>("IllyRegionID")
                         .HasColumnName("ILLY_REGION_ID")
-                        .HasColumnType("TEXT")
+                        .HasColumnType("INTEGER")
                         .HasMaxLength(3);
 
                     b.Property<string>("IllyriadCode")

@@ -18,54 +18,69 @@
         <thead>
             <tr>
                 <th>
-
                 </th>
                 <th>
                     Item Name
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.illyData[0].ItemXGrid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.illyData[0].ItemYGrid)
+                    Grid (X | Y)
                 </th>
                 <th>
                     Quantity on Grid
                 </th>
                 <th>
-                    Last Updated
+                    Last Updated / Harvested
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            @foreach (var item in Model.RecentNotifies.Where(i => i.IllyRegionID == distinctRegion.DistinctRegionID))
+            @foreach (var item in Model.RecentNotifications.Where(i => i.IllyriadRegionID == distinctRegion.DistinctRegionID))
             {
-                @foreach (var indRes in Model.RareResourcesCoreData.Where(r => r.ResourceCode == item.IllyriadCode))
+                @foreach (var indMin in Model.RareMineralItems.Where(r => r.IllyCode == item.ItemCode))
                 {
                     <tr>
                         <td>
-                            <img src="~/gameImages/rareMinerals/@indRes.ImageName" alt=@indRes.ResourceDescription height="30" width="30"/>
+                            <img src="~/gameImages/@indMin.ImageName" alt=@indMin.ItemDescription height="30" width="30" />
                         </td>
                         <td>
-                            @indRes.ResourceName
+                            @indMin.ItemName
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ItemXGrid)
+                            <a href="https://elgea.illyriad.co.uk/#/World/Map/@item.ItemX/@item.ItemY">@item.ItemX | @item.ItemY</a>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.ItemYGrid)
+                            @item.QuantityOnGrid
                         </td>
                         <td>
-                            <center>@Html.DisplayFor(modelItem => item.GridQuantity)</center>
+                            @item.LastUpdated
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.NotificationDate)
+                            <!--<a asp-page="./Delete" asp-route-id="@item.NotifyRecordID">Exhaust</a>-->
+                        </td>
+                    </tr>
+
+                }
+                @foreach (var indHer in Model.RareHerbItems.Where(r => r.IllyCode == item.ItemCode))
+                {
+                    <tr>
+                        <td>
+                            <img src="~/gameImages/@indHer.ImageName" alt=@indHer.ItemDescription height="30" width="30" />
                         </td>
                         <td>
-                            <!--<a asp-page="./Edit" asp-route-id="@item.RecordID">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@item.RecordID">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.RecordID">Delete</a>-->
+                            @indHer.ItemName
+                        </td>
+                        <td>
+                            <a href="https://elgea.illyriad.co.uk/#/World/Map/@item.ItemX/@item.ItemY">@item.ItemX | @item.ItemY</a>
+                        </td>
+                        <td>
+                            @item.QuantityOnGrid
+                        </td>
+                        <td>
+                            @item.LastUpdated
+                        </td>
+                        <td>
+                            <!--<a asp-page="./Delete" asp-route-id="@item.NotifyRecordID">Exhaust</a>-->
                         </td>
                     </tr>
 

@@ -19,7 +19,6 @@ namespace IllyridAssist.Pages
         public IndexModel(ILogger<IndexModel> logger, IllyContext context)
         {
             _logger = logger;
-
             _context = context;
         }
 

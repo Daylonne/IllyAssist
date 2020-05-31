@@ -35,6 +35,22 @@ namespace IllyriadAssist.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MD_RARE_HERBS",
+                columns: table => new
+                {
+                    ITEM_ID = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    ITEM_NAME = table.Column<string>(maxLength: 100, nullable: false),
+                    ILLY_CODE = table.Column<string>(maxLength: 10, nullable: false),
+                    ITEM_DESCRIPTION = table.Column<string>(maxLength: 1000000, nullable: true),
+                    IMAGE_NAME = table.Column<string>(maxLength: 1000, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MD_RARE_HERBS", x => x.ITEM_ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "MD_RARE_MINERALS",
                 columns: table => new
                 {
@@ -69,7 +85,7 @@ namespace IllyriadAssist.Migrations
                     ITEM_X_GRID = table.Column<string>(maxLength: 5, nullable: false),
                     ITEM_Y_GRID = table.Column<string>(maxLength: 5, nullable: false),
                     GRID_QUANTITY = table.Column<string>(maxLength: 10, nullable: false),
-                    ILLY_REGION_ID = table.Column<string>(maxLength: 3, nullable: false),
+                    ILLY_REGION_ID = table.Column<int>(maxLength: 3, nullable: false),
                     NOTIFICATION_DATE = table.Column<string>(maxLength: 30, nullable: false)
                 },
                 constraints: table =>
@@ -85,6 +101,9 @@ namespace IllyriadAssist.Migrations
 
             migrationBuilder.DropTable(
                 name: "MD_ILLY_REGIONS");
+
+            migrationBuilder.DropTable(
+                name: "MD_RARE_HERBS");
 
             migrationBuilder.DropTable(
                 name: "MD_RARE_MINERALS");

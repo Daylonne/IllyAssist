@@ -12,6 +12,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Pages\Error.bk" />
+    <None Remove="Pages\Error.cshtml.bk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Pages\Error.cshtml.bk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\Error.bk" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
       <PrivateAssets>all</PrivateAssets>
