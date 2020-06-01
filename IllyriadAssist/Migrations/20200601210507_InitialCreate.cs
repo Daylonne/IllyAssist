@@ -13,7 +13,7 @@ namespace IllyriadAssist.Migrations
                     API_ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     API_TYPE = table.Column<string>(maxLength: 15, nullable: false),
-                    API_KEY = table.Column<string>(maxLength: 100, nullable: true)
+                    API_KEY = table.Column<string>(maxLength: 200, nullable: true)
                 },
                 constraints: table =>
                 {

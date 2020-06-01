@@ -27,18 +27,6 @@ namespace IllyridAssist.Pages
 
         }
 
-
-       /* public IActionResult OnPost()
-        {
-            Message = "Button was Clicked";
-
-            Utilities xmlParser = new Utilities();
-            xmlParser.XMLParser(_context);
-
-            return Page();
-
-        }*/
-
         public async Task OnPostParseXML()
         {
 

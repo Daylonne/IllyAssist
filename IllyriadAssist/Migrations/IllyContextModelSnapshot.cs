@@ -25,7 +25,7 @@ namespace IllyriadAssist.Migrations
                     b.Property<string>("APIKey")
                         .HasColumnName("API_KEY")
                         .HasColumnType("TEXT")
-                        .HasMaxLength(100);
+                        .HasMaxLength(200);
 
                     b.Property<string>("APIType")
                         .IsRequired()

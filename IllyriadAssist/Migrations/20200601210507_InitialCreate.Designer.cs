@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IllyriadAssist.Migrations
 {
     [DbContext(typeof(IllyContext))]
-    [Migration("20200529200044_InitialCreate")]
+    [Migration("20200601210507_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,7 +27,7 @@ namespace IllyriadAssist.Migrations
                     b.Property<string>("APIKey")
                         .HasColumnName("API_KEY")
                         .HasColumnType("TEXT")
-                        .HasMaxLength(100);
+                        .HasMaxLength(200);
 
                     b.Property<string>("APIType")
                         .IsRequired()

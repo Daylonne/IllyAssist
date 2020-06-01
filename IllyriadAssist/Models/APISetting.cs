@@ -19,7 +19,7 @@ namespace IllyriadAssist.Models
         [Display(Name = "API Type")]
         public string APIType { get; set; }
 
-        [StringLength(100, ErrorMessage = "API Key cannot be longer than 100 characters.")]
+        [StringLength(200, ErrorMessage = "API Key cannot be longer than 200 characters.")]
         [Column("API_KEY")]
         [Display(Name = "API Key")]
         public string APIKey { get; set; }

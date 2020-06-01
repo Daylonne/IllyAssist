@@ -279,7 +279,7 @@ namespace IllyriadAssist
                             };
 
                             context.IllyAPIData.AddRange(InsertOrUpddateNotify);
-                            context.SaveChanges();
+                            //context.SaveChanges();
 
                         }
 
@@ -292,7 +292,7 @@ namespace IllyriadAssist
 
                     }
 
-                    //context.SaveChanges();
+                    context.SaveChanges();
 
                 }
 

@@ -25,5 +25,13 @@ namespace IllyriadAssist.Pages.API
         {
             APISetting = await _context.APISettings.ToListAsync();
         }
+
+        public async Task OnPostParseXML()
+        {
+
+            Utilities xmlParser = new Utilities();
+            xmlParser.XMLParser(_context);
+
+        }
     }
 }

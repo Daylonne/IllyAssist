@@ -16,7 +16,7 @@
             <input type="hidden" asp-for="APISetting.APIid" />
             <div class="form-group">
                 <label asp-for="APISetting.APIType" class="control-label"></label>
-                <input asp-for="APISetting.APIType" class="form-control" />
+                <input asp-for="APISetting.APIType" class="form-control" readonly="readonly"/>
                 <span asp-validation-for="APISetting.APIType" class="text-danger"></span>
             </div>
             <div class="form-group">
