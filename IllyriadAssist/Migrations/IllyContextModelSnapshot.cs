@@ -15,6 +15,86 @@ namespace IllyriadAssist.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.4");
 
+            modelBuilder.Entity("IllyriadAssist.Models.APISetting", b =>
+                {
+                    b.Property<int>("APIid")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("API_ID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("APIKey")
+                        .HasColumnName("API_KEY")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(200);
+
+                    b.Property<string>("APIType")
+                        .IsRequired()
+                        .HasColumnName("API_TYPE")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(15);
+
+                    b.HasKey("APIid");
+
+                    b.ToTable("MD_API_SETTINGS");
+                });
+
+            modelBuilder.Entity("IllyriadAssist.Models.IllyRegions", b =>
+                {
+                    b.Property<int>("RegionID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("REGION_ID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("IllyRegionID")
+                        .HasColumnName("ILLY_REGION_ID")
+                        .HasColumnType("INTEGER")
+                        .HasMaxLength(3);
+
+                    b.Property<string>("RegionName")
+                        .HasColumnName("REGION_NAME")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
+
+                    b.HasKey("RegionID");
+
+                    b.ToTable("MD_ILLY_REGIONS");
+                });
+
+            modelBuilder.Entity("IllyriadAssist.Models.RareHerbs", b =>
+                {
+                    b.Property<int>("ItemID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("ITEM_ID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("IllyCode")
+                        .IsRequired()
+                        .HasColumnName("ILLY_CODE")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnName("IMAGE_NAME")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(1000);
+
+                    b.Property<string>("ItemDescription")
+                        .HasColumnName("ITEM_DESCRIPTION")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(1000000);
+
+                    b.Property<string>("ItemName")
+                        .IsRequired()
+                        .HasColumnName("ITEM_NAME")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
+
+                    b.HasKey("ItemID");
+
+                    b.ToTable("MD_RARE_HERBS");
+                });
+
             modelBuilder.Entity("IllyriadAssist.Models.RareMinerals", b =>
                 {
                     b.Property<int>("ItemID")
@@ -49,6 +129,104 @@ namespace IllyriadAssist.Migrations
                     b.HasKey("ItemID");
 
                     b.ToTable("MD_RARE_MINERALS");
+                });
+
+            modelBuilder.Entity("IllyriadAssist.Models.illyData", b =>
+                {
+                    b.Property<int>("RecordID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("RECORD_ID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("APINotificationCategory")
+                        .IsRequired()
+                        .HasColumnName("NOTIFY_CATEGORY")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(20);
+
+                    b.Property<int>("APINotificationCategoryID")
+                        .HasColumnName("NOTIFY_CAT_ID")
+                        .HasColumnType("INTEGER")
+                        .HasMaxLength(2);
+
+                    b.Property<int>("APINotificationID")
+                        .HasColumnName("NOTIFY_ID")
+                        .HasColumnType("INTEGER")
+                        .HasMaxLength(40);
+
+                    b.Property<string>("APINotificationType")
+                        .IsRequired()
+                        .HasColumnName("NOTIFY_TYPE")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(4);
+
+                    b.Property<int>("APINotificationTypeID")
+                        .HasColumnName("NOTIFY_TYPE_ID")
+                        .HasColumnType("INTEGER")
+                        .HasMaxLength(4);
+
+                    b.Property<string>("CityName")
+                        .IsRequired()
+                        .HasColumnName("CITY_NAME")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(100);
+
+                    b.Property<string>("CityXGrid")
+                        .IsRequired()
+                        .HasColumnName("CITY_X_GRID")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("CityYGrid")
+                        .IsRequired()
+                        .HasColumnName("CITY_Y_GRID")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("GridQuantity")
+                        .IsRequired()
+                        .HasColumnName("GRID_QUANTITY")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(10);
+
+                    b.Property<int>("IllyRegionID")
+                        .HasColumnName("ILLY_REGION_ID")
+                        .HasColumnType("INTEGER")
+                        .HasMaxLength(3);
+
+                    b.Property<string>("IllyriadCode")
+                        .IsRequired()
+                        .HasColumnName("ILLY_ITEM_CODE")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(10);
+
+                    b.Property<string>("ItemCategory")
+                        .IsRequired()
+                        .HasColumnName("ITEM_CATEGORY")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(4);
+
+                    b.Property<string>("ItemXGrid")
+                        .IsRequired()
+                        .HasColumnName("ITEM_X_GRID")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("ItemYGrid")
+                        .IsRequired()
+                        .HasColumnName("ITEM_Y_GRID")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(5);
+
+                    b.Property<string>("NotificationDate")
+                        .IsRequired()
+                        .HasColumnName("NOTIFICATION_DATE")
+                        .HasColumnType("TEXT")
+                        .HasMaxLength(30);
+
+                    b.HasKey("RecordID");
+
+                    b.ToTable("USER_ILLY_DATA");
                 });
 #pragma warning restore 612, 618
         }

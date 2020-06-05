@@ -5,6 +5,26 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\API.bk\**" />
+    <Content Remove="Pages\API.bk\**" />
+    <EmbeddedResource Remove="Pages\API.bk\**" />
+    <None Remove="Pages\API.bk\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\Error.bk" />
+    <None Remove="Pages\Error.cshtml.bk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="Pages\Error.cshtml.bk" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Pages\Error.bk" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
       <PrivateAssets>all</PrivateAssets>
@@ -16,7 +36,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
   </ItemGroup>
 
   <ItemGroup>

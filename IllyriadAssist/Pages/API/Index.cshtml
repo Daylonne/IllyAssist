@@ -1,0 +1,45 @@
+﻿@page
+@model IllyriadAssist.Pages.API.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.APISetting[0].APIType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.APISetting[0].APIKey)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.APISetting) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.APIType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.APIKey)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.APIid">Update</a>
+            </td>
+        </tr>
+        <tr>
+            <p></p>
+            In this version you will need to manually update your notifications <form asp-page-handler="ParseXML" method="post"><button class="btn btn-default">Update Notifications</button></form>
+            <p></p>
+        </tr>
+}
+    </tbody>
+</table>

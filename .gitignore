@@ -338,3 +338,8 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/GIMPRaw
+/region codes.txt
+/RawReleaseNotes
+/NOTIFY_ID (45) - RegExp Design.png
+/NestedAccordion

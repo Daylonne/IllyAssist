@@ -31,7 +31,7 @@ namespace IllyriadAssist.Models
         public string ItemDescription { get; set; }
 
         [Required]
-        [StringLength(1000, ErrorMessage = "Image Location cannot be longer than 1000 characters.")]
+        [StringLength(1000, ErrorMessage = "Image Name cannot be longer than 1000 characters.")]
         [Column("IMAGE_NAME")]
         [Display(Name = "Image Name")]
         public string ImageName { get; set; }
