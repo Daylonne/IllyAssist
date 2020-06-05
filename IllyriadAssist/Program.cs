@@ -28,13 +28,13 @@ namespace IllyriadAssist
 
             CreateDbIfNotExists(host);
 
-            //Console.WriteLine("---------------------------------Begining to Load Browser--------------------------------------------------");
-
-            //LoadDefaultBrowser("http://localhost:5001");
+            Console.WriteLine("---------------------------------Begining to Load Browser--------------------------------------------------");
+            //System.Threading.Thread.Sleep(30000);
+            LoadDefaultBrowser("http://localhost:5001");
 
             Console.WriteLine("--------------------------------------Starting Host--------------------------------------------------------");
 
-            host.Start();
+            host.Run();
 
             Console.WriteLine("----------------Application Startup Complete.  Open a web browser and type in localhost:5001---------------");
 
