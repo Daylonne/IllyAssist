@@ -40,7 +40,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\gameImages\animalParts\" />
     <Folder Include="wwwroot\gameImages\craftedItems\" />
     <Folder Include="wwwroot\gameImages\basicResources\" />

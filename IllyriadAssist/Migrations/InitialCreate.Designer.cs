@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IllyriadAssist.Migrations
 {
     [DbContext(typeof(IllyContext))]
-    [Migration("20200601210507_InitialCreate")]
+    [Migration("20200602000513_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
